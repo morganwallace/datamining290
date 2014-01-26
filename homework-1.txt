@@ -1,0 +1,2 @@
+My name is Morgan Wallace
+I'm a second year masters student at the School of Information. I'm interested in this class to improve my Python skills and learn best practices for data mining. I hope that what I discover in this class will help me in better information services in my projects, current and future.
