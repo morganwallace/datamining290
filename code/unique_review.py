@@ -12,11 +12,15 @@ class UniqueReview(MRJob):
     def extract_words(self, _, record):
         """Take in a record, yield <word, review_id>"""
         if record['type'] == 'review':
+            # WORD_RE = re.compile(r"[\w']+")
             ###
             # TODO: for each word in the review, yield the correct key,value
             # pair:
             # for word in ____:
             #   yield [ ___ , ___ ]
+            # for word in record:
+            for word in WORD_RE.findall(record['text']):
+                yield [word, record["review_id"]]
             ##/
 
     def count_reviews(self, word, review_ids):
@@ -29,6 +33,10 @@ class UniqueReview(MRJob):
         # TODO: yield the correct pair when the desired condition is met:
         # if ___:
         #     yield [ ___ , ___ ]
+        # print review_ids
+        if len(unique_reviews)==1:
+            for i in unique_reviews:
+                yield [i,1]
         ##/
 
     def count_unique_words(self, review_id, unique_word_counts):
@@ -36,6 +44,7 @@ class UniqueReview(MRJob):
         ###
         # TODO: summarize unique_word_counts and output the result
         #
+        yield [review_id,sum(unique_word_counts)]
         ##/
 
     def aggregate_max(self, review_id, unique_word_count):
@@ -44,6 +53,7 @@ class UniqueReview(MRJob):
         # TODO: By yielding using the same keyword, all records will appear in
         # the same reducer:
         # yield ["MAX", [ ___ , ___]]
+        yield["MAX",[unique_word_count,review_id]]
         ##/
 
     def select_max(self, stat, count_review_ids):
@@ -54,6 +64,8 @@ class UniqueReview(MRJob):
         # the count. HINT: the max() function will compare pairs by the first
         # number
         #
+
+        yield max(count_review_ids)
         #/
 
     def steps(self):
