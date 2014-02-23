@@ -8,3 +8,4 @@ venv/
 /server/shorten.db
 .DS_Store
 */.DS_Store
+*ipynb_checkpoints*

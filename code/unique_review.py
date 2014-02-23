@@ -53,7 +53,7 @@ class UniqueReview(MRJob):
         # TODO: By yielding using the same keyword, all records will appear in
         # the same reducer:
         # yield ["MAX", [ ___ , ___]]
-        yield["MAX",[unique_word_count,review_id]]
+        yield ["MAX",[unique_word_count,review_id]]
         ##/
 
     def select_max(self, stat, count_review_ids):
