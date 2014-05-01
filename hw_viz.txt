@@ -1,0 +1,2 @@
+My visualizations for this week's homework are in an ipython notebook:
+http://nbviewer.ipython.org/github/morganwallace/classify_exercise/blob/master/Machine%20Learning%20-%20Free%20Weights.ipynb?create=1
